@@ -221,9 +221,9 @@ function download() {
 
   if (!blockFile.length) {
     for (var i = 0; i < fileDownload.length; i++) {
-      fileDownload[i].setAttribute('download', 'download');
+      fileDownload[i].setAttribute('download', '');
       fileDownload[i].addEventListener('click', function () {
-        document.location = './Hello.zip';
+        document.location = './Hello.pdf';
       });
     }
   }
