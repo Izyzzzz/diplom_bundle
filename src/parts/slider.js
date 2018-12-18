@@ -70,8 +70,7 @@ function slider() {
                 box.children[1].classList.add(classActive);
                 clickNext();
             });
-            prev.addEventListener('click', function () {
-
+            prev.addEventListener('click', function () {                
                 clickPrev();
                 box.children[1].classList.remove(classActive);
                 box.children[0].classList.add(classActive);
@@ -94,7 +93,7 @@ function slider() {
 
         function clickPrev() {
             box.children[boxLenght.length - 1].animate([{
-                    transform: 'translateX(-500px)'
+                    transform: 'translateX(-100px)'
                 },
                 {
                     transform: 'translateX(0px)'

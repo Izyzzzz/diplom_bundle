@@ -469,7 +469,7 @@ function slider() {
 
     function clickPrev() {
       box.children[boxLenght.length - 1].animate([{
-        transform: 'translateX(-500px)'
+        transform: 'translateX(-100px)'
       }, {
         transform: 'translateX(0px)'
       }], 800);
