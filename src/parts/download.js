@@ -7,10 +7,13 @@ function download() {
 
     if (!blockFile.length) {
         for (let i = 0; i < fileDownload.length; i++) {
-            fileDownload[i].setAttribute('download', '');
-            fileDownload[i].addEventListener('click', function () {
-                document.location = './Hello.pdf';
-            });
+            let blockDownload = document.createElement("a");
+            fileDownload[i].parentNode.insertBefore(blockDownload, fileDownload[i]);
+            blockDownload.appendChild(fileDownload[i]);
+            blockDownload.setAttribute('download', '');
+            blockDownload.setAttribute('href', './Hello.pdf');
+            blockDownload.style.display = 'table';
+              
         }
     }
 }
