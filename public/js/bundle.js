@@ -474,10 +474,10 @@ function slider() {
     function clickPrev() {
       if (flag) {
         box.children[boxLenght.length - 1].animate([{
-          transform: 'translateX(-100px)'
+          transform: 'rotateY(90deg)'
         }, {
-          transform: 'translateX(0px)'
-        }], 800);
+          transform: 'rotateY(0deg)'
+        }], 1600);
       }
 
       box.insertBefore(box.children[box.children.length - 1], box.children[0]);
