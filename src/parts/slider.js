@@ -53,9 +53,9 @@ function slider() {
 
     // Slider Box
 
-    function sliderBox(box, prev, next, classActive, boxLenght, flag, numFlag) {
+    function sliderBox(box, prev, next, classActive, flag, boxLenght, numFlag) {
         if (!slides.length) {} else {
-            if (flag) {
+            if (flag && numFlag === 3) {
                 logo[numFlag].addEventListener('click', function () {
                     let timerId = setTimeout(function tick() {
                         box.children[0].classList.remove(classActive);
@@ -70,7 +70,7 @@ function slider() {
                 box.children[1].classList.add(classActive);
                 clickNext();
             });
-            prev.addEventListener('click', function () {                
+            prev.addEventListener('click', function () {
                 clickPrev();
                 box.children[1].classList.remove(classActive);
                 box.children[0].classList.add(classActive);
@@ -79,26 +79,33 @@ function slider() {
         }
 
         function clickNext() {
-            box.children[0].animate([{
-                transform: 'rotateY(0deg)'
-            },
-            {
-                transform: 'rotateY(90deg)'
-            }
-        ], 800);
-            setTimeout(function () {                
+            if (flag) {
+                box.children[0].animate([{
+                        transform: 'rotateY(0deg)'
+                    },
+                    {
+                        transform: 'rotateY(90deg)'
+                    }
+                ], 800);
+                setTimeout(function () {
+                    box.appendChild(box.children[0]);
+                }, 800);
+            } else {
                 box.appendChild(box.children[0]);
-            }, 800);
+            }
+
         }
 
         function clickPrev() {
-            box.children[boxLenght.length - 1].animate([{
-                    transform: 'translateX(-100px)'
-                },
-                {
-                    transform: 'translateX(0px)'
-                }
-            ], 800);
+            if (flag) {
+                box.children[boxLenght.length - 1].animate([{
+                        transform: 'translateX(-100px)'
+                    },
+                    {
+                        transform: 'translateX(0px)'
+                    }
+                ], 800);
+            }
             box.insertBefore(box.children[box.children.length - 1], box.children[0]);
         }
     }
@@ -115,7 +122,7 @@ function slider() {
         styleСhangeSlider(showupSlider);
     }
 
-    sliderBox(bottomSlider, slickPrev, slickNext, 'card-active', boxSlider);
+    sliderBox(bottomSlider, slickPrev, slickNext, 'card-active', true, boxSlider);
 
     // Slider third page
 
@@ -129,7 +136,7 @@ function slider() {
         styleСhangeSlider(modulesSlider);
     }
 
-    sliderBox(boxSliderTwo, slickPrevTwo, slickNextTwo, 'card-active', boxModules, true, 3);
+    sliderBox(boxSliderTwo, slickPrevTwo, slickNextTwo, 'card-active', true, boxModules, 3);
 
 
     // Slider five page
@@ -143,7 +150,7 @@ function slider() {
         styleСhangeSlider(feedSlider);
     }
 
-    sliderBox(boxSliderThree, slickPrevThree, slickNextThree, 'feed__item-active');
+    sliderBox(boxSliderThree, slickPrevThree, slickNextThree, 'feed__item-active', false);
 
 
     function styleСhangeSlider(changeItem) {

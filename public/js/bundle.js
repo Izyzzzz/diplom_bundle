@@ -431,9 +431,9 @@ function slider() {
   } // Slider Box
 
 
-  function sliderBox(box, prev, next, classActive, boxLenght, flag, numFlag) {
+  function sliderBox(box, prev, next, classActive, flag, boxLenght, numFlag) {
     if (!slides.length) {} else {
-      if (flag) {
+      if (flag && numFlag === 3) {
         logo[numFlag].addEventListener('click', function () {
           var timerId = setTimeout(function tick() {
             box.children[0].classList.remove(classActive);
@@ -457,22 +457,29 @@ function slider() {
     }
 
     function clickNext() {
-      box.children[0].animate([{
-        transform: 'rotateY(0deg)'
-      }, {
-        transform: 'rotateY(90deg)'
-      }], 800);
-      setTimeout(function () {
+      if (flag) {
+        box.children[0].animate([{
+          transform: 'rotateY(0deg)'
+        }, {
+          transform: 'rotateY(90deg)'
+        }], 800);
+        setTimeout(function () {
+          box.appendChild(box.children[0]);
+        }, 800);
+      } else {
         box.appendChild(box.children[0]);
-      }, 800);
+      }
     }
 
     function clickPrev() {
-      box.children[boxLenght.length - 1].animate([{
-        transform: 'translateX(-100px)'
-      }, {
-        transform: 'translateX(0px)'
-      }], 800);
+      if (flag) {
+        box.children[boxLenght.length - 1].animate([{
+          transform: 'translateX(-100px)'
+        }, {
+          transform: 'translateX(0px)'
+        }], 800);
+      }
+
       box.insertBefore(box.children[box.children.length - 1], box.children[0]);
     }
   } // Slider Loan bottom
@@ -488,7 +495,7 @@ function slider() {
     styleСhangeSlider(showupSlider);
   }
 
-  sliderBox(bottomSlider, slickPrev, slickNext, 'card-active', boxSlider); // Slider third page
+  sliderBox(bottomSlider, slickPrev, slickNext, 'card-active', true, boxSlider); // Slider third page
 
   var modulesSlider = document.querySelector('.modules__content-slider'),
       slickPrevTwo = document.querySelector('.modules__info-btns .slick-prev'),
@@ -500,7 +507,7 @@ function slider() {
     styleСhangeSlider(modulesSlider);
   }
 
-  sliderBox(boxSliderTwo, slickPrevTwo, slickNextTwo, 'card-active', boxModules, true, 3); // Slider five page
+  sliderBox(boxSliderTwo, slickPrevTwo, slickNextTwo, 'card-active', true, boxModules, 3); // Slider five page
 
   var feedSlider = document.querySelector('.feed__slider'),
       slickPrevThree = document.querySelector('.button .slick-prev'),
@@ -511,7 +518,7 @@ function slider() {
     styleСhangeSlider(feedSlider);
   }
 
-  sliderBox(boxSliderThree, slickPrevThree, slickNextThree, 'feed__item-active');
+  sliderBox(boxSliderThree, slickPrevThree, slickNextThree, 'feed__item-active', false);
 
   function styleСhangeSlider(changeItem) {
     changeItem.style.display = '-webkit-box';
