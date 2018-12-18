@@ -12,11 +12,18 @@ function upcard() {
         logo[3].addEventListener('click', function () {
             setTimeout(function () {
                 hanson.style.display = 'block';
+                hanson.animate([{
+                        transform: 'translateX(-500px)'
+                    },
+                    {
+                        transform: 'translateX(0px)'
+                    }
+                ], 500);
             }, 3000);
         });
 
         logo[5].addEventListener('click', function () {
-                hanson.style.display = 'none';
+            hanson.style.display = 'none';
         });
     }
 

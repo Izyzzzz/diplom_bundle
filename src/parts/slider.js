@@ -53,7 +53,7 @@ function slider() {
 
     // Slider Box
 
-    function sliderBox(box, prev, next, classActive, flag, numFlag) {
+    function sliderBox(box, prev, next, classActive, boxLenght, flag, numFlag) {
         if (!slides.length) {} else {
             if (flag) {
                 logo[numFlag].addEventListener('click', function () {
@@ -71,17 +71,35 @@ function slider() {
                 clickNext();
             });
             prev.addEventListener('click', function () {
+
                 clickPrev();
                 box.children[1].classList.remove(classActive);
                 box.children[0].classList.add(classActive);
+
             });
         }
 
         function clickNext() {
-            box.appendChild(box.children[0]);
+            box.children[0].animate([{
+                transform: 'rotateY(0deg)'
+            },
+            {
+                transform: 'rotateY(90deg)'
+            }
+        ], 800);
+            setTimeout(function () {                
+                box.appendChild(box.children[0]);
+            }, 800);
         }
 
         function clickPrev() {
+            box.children[boxLenght.length - 1].animate([{
+                    transform: 'translateX(-500px)'
+                },
+                {
+                    transform: 'translateX(0px)'
+                }
+            ], 800);
             box.insertBefore(box.children[box.children.length - 1], box.children[0]);
         }
     }
@@ -91,26 +109,28 @@ function slider() {
     let showupSlider = document.querySelector('.showup__content-slider'),
         bottomSlider = document.querySelector('.showup__content-slider'),
         slickPrev = document.querySelector('.slick-prev'),
-        slickNext = document.querySelector('.slick-next');
+        slickNext = document.querySelector('.slick-next'),
+        boxSlider = document.querySelectorAll('.showup__content-slider .card');
 
     if (!slides.length) {} else {
         styleСhangeSlider(showupSlider);
     }
 
-    sliderBox(bottomSlider, slickPrev, slickNext, 'card-active');
+    sliderBox(bottomSlider, slickPrev, slickNext, 'card-active', boxSlider);
 
     // Slider third page
 
     let modulesSlider = document.querySelector('.modules__content-slider'),
         slickPrevTwo = document.querySelector('.modules__info-btns .slick-prev'),
         slickNextTwo = document.querySelector('.modules__info-btns .slick-next'),
-        boxSliderTwo = document.querySelector('.modules__content-slider');
+        boxSliderTwo = document.querySelector('.modules__content-slider'),
+        boxModules = document.querySelectorAll('.modules__content-slider .card');
 
     if (!slides.length) {} else {
         styleСhangeSlider(modulesSlider);
     }
 
-    sliderBox(boxSliderTwo, slickPrevTwo, slickNextTwo, 'card-active', true, 3);
+    sliderBox(boxSliderTwo, slickPrevTwo, slickNextTwo, 'card-active', boxModules, true, 3);
 
 
     // Slider five page

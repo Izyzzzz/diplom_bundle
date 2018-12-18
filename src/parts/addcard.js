@@ -31,6 +31,13 @@ function addcard() {
         if (addItemLR === 3) {
             officer.removeChild(document.querySelectorAll(`.${classItem} .officer__card-item`)[3]);
         }
+        newDiv.animate([{
+                transform: 'rotateX(90deg)'
+            },
+            {
+                transform: 'rotateX(0deg)'
+            }
+        ], 500);
     }
 }
 
